@@ -1,5 +1,5 @@
 # GMX_BG96
-The GMX-BG96 is a Quectel BG96 based GMX module for the Tuino plaform.
+The GMX-BG96 is a Quectel BG96 based GMX module for the Tuino plaform.<br/>
 <br/>
 <img src="/docs/bg96_1.jpg"/>
 <br/>
