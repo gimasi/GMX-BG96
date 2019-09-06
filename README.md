@@ -12,5 +12,5 @@ Finally we have also added 2 microswitches to turn on and to reset the module. T
 # USB Drivers and Firmware update.
 To install USB drivers to access the BG96 as well as the firmware update tool please refere to the Tuino 096 [repository](https://github.com/gimasi/TUINO_ZERO_96) in the BG96_firmware_update directory. 
 
-# Arudino Library
+# Tuino Library
 ... coming soon ...
