@@ -98,6 +98,72 @@ In the [bg96_demo](bg96_demo) directory you can find a simple script that uses a
 The demo consists in reading an analog temperature sensor, connected to the A0 port ( GROOVE Connector) and transmitting the data over to the cloud via a simple UDP socket connection.<br/>
 The demo is configured to send data to our test cloud system ( please send us an email if you want an access ). In addition in the demo we are also using an OLED Display, connected to the I2C port ( always on a GROOVE Connector ) that displays some additional data.<br/>
 The code also handles simple downlinks that can trigger the LED on the GMX-BG96 module ON and OFF.<br/>The LEDS are mapped onto 2 bytes, setting the byte to 0 turns the led off, setting it to 1 turns the led ON.
+<br/>
+<br/>
+Here some exctracts of the code to see how it works:
+
+```c
+
+/* Here an extract to setup the BG96 and connect to the NB1 network */
+
+// Init the BG96
+if ( gmxBG96_init(__IP_ADDRESS__,__PORT__) ==  GMX_BG96_OK )
+{
+    Serial.println("Init Ok!")
+}
+
+
+if ( gmxBG96_setNBIoT("swisscom-test.m2m.ch","80000") == GMX_BG96_OK) 
+{
+  Serial.println("NBIoT Ok!")
+}
+
+/* Setup SWISSCOM as Operator */
+if ( gmxBG96_setOperator("22801") == GMX_BG96_OK)
+{
+  Serial.print("Operator Set!");
+}
+
+if ( gmxBG96_attach() == GMX_BG96_OK)
+{
+  Serial.println("Attached to Network");
+}
+
+
+
+/* Here another extract for communicating */
+
+      // Device Address
+      for(int i=0;i<8;i++)
+       buffering[i]=devAddress[i];
+
+      // This is the payload lenght
+      buffering[8]= 3;
+
+      // Here we start the payload
+      buffering[9] = 0x01;
+      buffering[10] = (temperature_int & 0xff00 ) >> 8;
+      buffering[11] = temperature_int & 0x00ff;
+  
+              
+      if ( gmxBG96_SocketOpen()==GMX_BG96_OK)
+        Serial.println("Socket Opened");
+      else
+        Serial.println("Socket Error");
+            
+                
+      if ( gmxBG96_TXData(buffering,12) == GMX_BG96_OK )
+        Serial.println("Send Ok!");
+      else
+        Serial.println("Send KO!");   
+
+
+       if ( gmxBG96_SocketClose()==GMX_BG96_OK)
+        Serial.println("Socket Opened");
+      else
+        Serial.println("Socket Error");
+
+```
 
 
 # GMX-BG96 Library 
@@ -196,7 +262,7 @@ Transmits the binary buffer <b>data</b> of size <b>data_len</b> via UDP socket.
 ```c
 uint8_t gmxBG96_RXData(char *rx_buffer, int rx_buffer_len, int *rx_received_len );
 ```
-Checks if data is available in the RX buffer. Parameters are <b>rx_buffer<b/> which will store the received Hex string, <b>rx_buffer_len</b> which is the maximum length for rx_buffer and <b>rx_received_len<b/> which will return the actual bytes received.
+Checks if data is available in the RX buffer. Parameters are <b>rx_buffer<b/> which will store the received Hex string, <b>rx_buffer_len</b> which is the maximum length for rx_buffer and <b>rx_received_len</b> which will return the actual bytes received.
 
 
 ```c
