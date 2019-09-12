@@ -262,7 +262,7 @@ Transmits the binary buffer <b>data</b> of size <b>data_len</b> via UDP socket.
 ```c
 uint8_t gmxBG96_RXData(char *rx_buffer, int rx_buffer_len, int *rx_received_len );
 ```
-Checks if data is available in the RX buffer. Parameters are <b>rx_buffer<b/> which will store the received Hex string, <b>rx_buffer_len</b> which is the maximum length for rx_buffer and <b>rx_received_len</b> which will return the actual bytes received.
+Checks if data is available in the RX buffer. Parameters are <b>rx_buffer</b> which will store the received Hex string, <b>rx_buffer_len</b> which is the maximum length for rx_buffer and <b>rx_received_len</b> which will return the actual bytes received.
 
 
 ```c
