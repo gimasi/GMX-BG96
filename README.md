@@ -219,7 +219,7 @@ Setup the BG96 for CATM1 connection, <b>apn</b> is the APN of the operator that 
 ```c
 uint8_t gmxBG96_setOperator( char *op_code);
 ```
-Sets the operator code <b>op_code</b>.This command can take some time to finish.<br/>
+Sets the operator code <b>op_code</b>.<br/>This command can take some time to finish.<br/>
 
 ```c
 uint8_t gmxBG96_attach();
