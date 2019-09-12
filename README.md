@@ -94,7 +94,7 @@ You can find this script in the gmx-bg96-proxy directory.<br/>
 <br>
 
 # Simple Demo
-In the bg96_demo directory you can find a simple script that uses a basic gmx_bg96 library for interacting with the BG96.<br/>
+In the [bg96_demo](bg96_demo) directory you can find a simple script that uses a basic gmx_bg96 library for interacting with the BG96.<br/>
 The demo consists in reading an analog temperature sensor, connected to the A0 port ( GROOVE Connector) and transmitting the data over to the cloud via a simple UDP socket connection.<br/>
 The demo is configured to send data to our test cloud system ( please send us an email if you want an access ). In addition in the demo we are also using an OLED Display, connected to the I2C port ( always on a GROOVE Connector ) that displays some additional data.<br/>
 The code also handles simple downlinks that can trigger the LED on the GMX-BG96 module ON and OFF.<br/>The LEDS are mapped onto 2 bytes, setting the byte to 0 turns the led off, setting it to 1 turns the led ON.
@@ -165,9 +165,10 @@ uint8_t gmxBG96_isNetworkAttached(int *attach_status);
 ```
 Returns in <b>attach_status</b> the state of the network attach.<br>
 Possible values are:
-* 0 ->
+* 0 -> Not trying to register
 * 1 -> Attached Home Network
-* 2 -> Searching
+* 2 -> Trying to register to network
+* 3 -> Attach denied
 * 5 -> Attached Roaming Network
 <br/>
 
