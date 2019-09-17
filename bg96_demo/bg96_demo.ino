@@ -303,7 +303,8 @@ void loop() {
     if ( gmxBG96_isNetworkAttachedStatus() )
     {
       network_attached = true;
-    
+      displayTX(true);
+
       //multiply the temperature with 100 to avoid sending as float value
       temperature_int = current_temperature * 100;
   
@@ -359,9 +360,11 @@ void loop() {
       }
 
       if ( gmxBG96_SocketClose()==0)
-        Serial.println("Socket Opened");
+        Serial.println("Socket Closed");
       else
         Serial.println("Socket Error");
+
+      displayTX(false);
     }
     else
     {
@@ -372,6 +375,12 @@ void loop() {
       if ( gmxBG96_attach() == 0)
         network_attached = true;
     }
+
+    timer_millis_tx = millis();
+  }
+  else
+  {
+    displayTime2TX(timer_period_to_tx - delta_tx);
   }
 
   if ( network_attached == false )

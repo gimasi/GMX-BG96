@@ -33,12 +33,12 @@ void splashScreen() {
   SeeedOled.putString("** TUINO+BG96 **"); 
   SeeedOled.setTextXY(2,0);  
   
-  sprintf(string,"SAP IoT Cloud");
+  sprintf(string,"Swisscom LTE");
   centerString( string );
   SeeedOled.putString(string);
   
   SeeedOled.setTextXY(4,0);  
-  sprintf(string,"GPS Demo");
+  sprintf(string,"Demo");
   centerString( string );
   SeeedOled.putString(string);
    
